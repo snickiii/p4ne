@@ -1,16 +1,5 @@
 from pysnmp.hlapi import *
 
-
-def print_names(result_names):
-    for answer in result_names:
-        for s in answer:
-            if s is None or type(s) == int:
-                continue
-            else:
-                for i in s:
-                    print(i)
-
-
 snmp_name = ObjectIdentity('SNMPv2-MIB', 'sysDescr', 0)
 snmp_interfaces = ObjectIdentity('1.3.6.1.2.1.2.2.1.2')
 
@@ -30,6 +19,10 @@ result_interfaces = nextCmd(
     ObjectType(snmp_interfaces),
     lexicographicMode=False
 )
+
+for answer in result_names:
+    for s in answer[3]:
+        print(s)
 
 for answer in result_interfaces:
     for i in answer[-1]:
