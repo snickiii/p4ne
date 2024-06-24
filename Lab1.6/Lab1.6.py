@@ -4,7 +4,7 @@ from ipaddress import IPv4Interface
 
 
 def return_network(s):
-    r = re.search("ip address (\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}) (\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})", s)
+    r = re.search("ip address ((?:[0-9]{1,3}[.]?){4}) ((?:[0-9]{1,3}[.]?){4})", s)
     if r is not None:
         return IPv4Interface((r.group(1), r.group(2)))
     else:
